@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-   fetch('index.get.json')
+   // fetch('http://localhost:4000/') // real backend
+   fetch('index.get.json') // fake backend
      .then(r => r.json())
      .then((drivers:Driver[]) => {
        this.drivers = drivers.map(d => {
