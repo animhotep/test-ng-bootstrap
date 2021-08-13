@@ -33,7 +33,7 @@ function generateData() {// Here we generate data for the api that can be used i
 }
 
 //Move object location random every 5 seconds
-/*setInterval(function() {
+setInterval(function() {
     var o = JSON.parse(fs.readFileSync('./index.get.json', 'utf8'));
 
     fs.mkdtemp("temp-", (err, folder) => {
@@ -42,7 +42,7 @@ function generateData() {// Here we generate data for the api that can be used i
         console.log("The temporary folder path is:", folder);
         fs.writeFileSync(`${folder}/index.get.json`, JSON.stringify(o));
     });
-}, 5000);*/
+}, 5000);
 
 app.use(cors()); // enable CORS to allow requests from frontend
 // register handler to return driver data
