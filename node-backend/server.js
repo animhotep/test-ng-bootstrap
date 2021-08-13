@@ -17,13 +17,13 @@ function generateData() {// Here we generate data for the api that can be used i
     var d = () => ({
         driverName: randopeep.name(),
         driverCityOrigin: randopeep.address.city(),
-        "driverLanguage": ['de', 'en', 'nl', 'fr', 'es', 'ar'][Math.floor(Math.random()*7)],
+        driverLanguage: ['de', 'gb-eng', 'nl', 'fr', 'es', 'ar'][Math.floor(Math.random()*5)],
         driverPhone: randopeep.address.phone(),
-        "driverGender": ['male', 'female'][Math.floor(Math.random()*2)],
+        driverGender: ['male', 'female'][Math.floor(Math.random()*2)],
         driverInfo: randopeep.corporate.catchPhrase(0),
         carMake: randopeep.corporate.name('large', 0),
-        "kmDriven": Math.floor(Math.random() * 100000),
-        'location': randopeep.address.geo()
+        kmDriven: Math.floor(Math.random() * 100000),
+        location: randopeep.address.geo()
     });
 
     for (let i = 0; i<9;  i++) {
