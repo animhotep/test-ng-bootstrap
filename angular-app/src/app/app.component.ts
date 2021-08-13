@@ -10,7 +10,9 @@ interface Driver {
   carMake: string,
   kmDriven: number,
   location: string,
-};
+  lat: string,
+  lon: string,
+}
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
    fetch('http://localhost:4000/')
      .then(r => r.json())
-     .then((drivers:Driver[]) => this.drivers =  drivers);
+     .then((drivers:Driver[]) => this.drivers = drivers.map(d => {
+       console.log(d.location[0])
+       d.lat = d.location[0];
+       d.lon = d.location[1];
+       return d;
+     }));
   }
 
 
