@@ -1,34 +1,58 @@
+<div class="wrapper">
+  <mat-toolbar>Sort and filter table, locations links to google.map</mat-toolbar>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">driverName</th>
-    <th scope="col">carMake</th>
-    <th scope="col">driverCityOrigin</th>
-    <th scope="col">driverGender</th>
-    <th scope="col">driverLanguage</th>
-    <th scope="col">driverPhone</th>
-    <th scope="col">kmDriven</th>
-    <th scope="col">location</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let driver of drivers">
-    <td>{{driver.driverName}}</td>
-    <td>{{driver.carMake}}</td>
-    <td>{{driver.driverCityOrigin}}</td>
-    <td>{{driver.driverGender}}</td>
-    <td>
-      <img [src]="'https://lipis.github.io/flag-icon-css/flags/4x3/' + driver.driverLanguage + '.svg'" class="mr-2" style="width: 20px">
-      <small>({{driver.driverLanguage}})</small>
-    </td>
-    <td>{{driver.driverPhone}}</td>
-    <td>{{driver.kmDriven}}</td>
-    <td>
-      <a href="https://www.google.com/maps/search/?api=1&query={{driver.lat}},{{driver.lon}}" target="_blank">
-        Show on the map: {{driver.location}}
-      </a>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. en" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="driverName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> driverName</th>
+      <td mat-cell *matCellDef="let element"> {{element.driverName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="driverCityOrigin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> driverCityOrigin</th>
+      <td mat-cell *matCellDef="let element"> {{element.driverCityOrigin}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="driverGender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> driverGender</th>
+      <td mat-cell *matCellDef="let element"> {{element.driverGender}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="driverLanguage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Lang</th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="'https://lipis.github.io/flag-icon-css/flags/4x3/' + element.driverLanguage + '.svg'" class="mr-2" style="width: 20px">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef> location</th>
+      <td mat-cell *matCellDef="let element">
+        <a href="https://www.google.com/maps/search/?api=1&query={{element.lat}},{{element.lon}}" target="_blank">
+          Show on the map: {{element.location}}
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="driverPhone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> driverPhone</th>
+      <td mat-cell *matCellDef="let element"> {{element.driverPhone}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+
+
+</div>
