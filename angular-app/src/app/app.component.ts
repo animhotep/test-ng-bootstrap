@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-   fetch('http://localhost:4000/')
+   fetch('index.get.json')
      .then(r => r.json())
      .then((drivers:Driver[]) => {
        this.drivers = drivers.map(d => {
