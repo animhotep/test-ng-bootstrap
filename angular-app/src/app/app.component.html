@@ -14,21 +14,22 @@
   </thead>
   <tbody>
   <tr *ngFor="let driver of drivers">
-    <th scope="row">{{driver.driverName}}</th>
-    <th scope="row">{{driver.carMake}}</th>
-    <th scope="row">{{driver.driverCityOrigin}}</th>
-    <th scope="row">{{driver.driverGender}}</th>
-    <th scope="row">
+    <td scope="row">{{driver.driverName}}</td>
+    <td scope="row">{{driver.carMake}}</td>
+    <td scope="row">{{driver.driverCityOrigin}}</td>
+    <td scope="row">{{driver.driverGender}}</td>
+    <td scope="row">
       <img [src]="'https://lipis.github.io/flag-icon-css/flags/4x3/' + driver.driverLanguage + '.svg'" class="mr-2" style="width: 20px">
       <small>({{driver.driverLanguage}})</small>
-    </th>
-    <th scope="row">{{driver.driverPhone}}</th>
-    <th scope="row">{{driver.kmDriven}}</th>
-    <th scope="row">
+    </td>
+    <td scope="row">{{driver.driverPhone}}</td>
+    <td scope="row">{{driver.kmDriven}}</td>
+    <td scope="row">
       <a href="https://www.google.com/maps/search/?api=1&query=0,1" target="_blank">
         latitude: 0
         longitude: 1</a>
-      {{driver.location}}</th>
+      {{driver.location}}
+    </td>
   </tr>
   </tbody>
 </table>
